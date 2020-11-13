@@ -25,7 +25,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- *
+ * https://picsum.photos/200
  * @author Bader
  */
 public class ImagesDemo extends Application {
@@ -62,9 +62,9 @@ public class ImagesDemo extends Application {
         return imageView;
     }
 
-    //we can also set horizontal alignment, vertical alignment, horizontal gap, vertical gap
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException { //take note
+        //we can also set horizontal alignment, vertical alignment, horizontal gap, vertical gap to HBox and VBox panes
         VBox vBoxPane = new VBox();
         //TODO: add components here
         vBoxPane.setPadding(new Insets(10));
