@@ -31,25 +31,16 @@ public class EventHandlersApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        GridPane gridPane = createGridPane(); //exported into separate function for code readability
+        //exported into separate function for code readability
 
-        btnEnlarge = new Button("Enlarge");
-        btnShrink = new Button("Shrink");
-        
-        EventHandler<ActionEvent> myCircleInnerHandler = new CircleInnerHandler(); //add type of event such as <ActionEvent> to prevent warning in output
-        
-        //set same handler to two buttons: this is an advantage of implementing handlers as inner or outer class over anonymous function
-        btnEnlarge.setOnAction(myCircleInnerHandler);
-        btnShrink.setOnAction(myCircleInnerHandler);
+        //grid pane containing UIControls with event handlers
+        GridPane gridPane = createGridPane();
+        //hbox with enlarge and shrink buttons
+        HBox hbox = createHBoxWithButtons();
 
-        //add button to hbox
-        HBox hbox = new HBox(btnEnlarge, btnShrink);
-        hbox.setAlignment(Pos.CENTER);
-        hbox.setSpacing(10);
-        
         //create resizable circle which sits inside stack pane (default alignment position of stack pane is center, no need to set it)
         circlePane = new ResizableCircle(50);
-        
+
         //add all panes into vbox and set it to scene
         VBox vbox = new VBox(gridPane, circlePane, hbox);
         vbox.setAlignment(Pos.CENTER);
@@ -60,6 +51,20 @@ public class EventHandlersApplication extends Application {
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private HBox createHBoxWithButtons() {
+        btnEnlarge = new Button("Enlarge");
+        btnShrink = new Button("Shrink");
+        EventHandler<ActionEvent> myCircleInnerHandler = new CircleInnerHandler(); //add type of event such as <ActionEvent> to prevent warning in output
+        //set same handler to two buttons: this is an advantage of implementing handlers as inner or outer class over anonymous function
+        btnEnlarge.setOnAction(myCircleInnerHandler);
+        btnShrink.setOnAction(myCircleInnerHandler);
+        //add button to hbox
+        HBox hbox = new HBox(btnEnlarge, btnShrink);
+        hbox.setAlignment(Pos.CENTER);
+        hbox.setSpacing(10);
+        return hbox;
     }
 
     private GridPane createGridPane() {
