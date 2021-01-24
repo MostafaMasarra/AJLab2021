@@ -58,7 +58,7 @@ public class TimelineAnimation extends Application {
         pathT.setFromX(-400);
         pathT.setToX(800);
         pathT.setCycleCount(Timeline.INDEFINITE);
-        
+
         //create a stack pane to show two images on top of each other (animatedImage on top of backgroundImage)
         StackPane root = new StackPane();
         root.getChildren().addAll(backgroundImage, animatedImage);
