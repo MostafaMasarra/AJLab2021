@@ -8,6 +8,7 @@ package ajlabsession10;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -138,13 +139,24 @@ public final class SignUpForm extends Pane {
         } else if (!password.equals(confirm)) {
             error = "Passwords do not match";
         } else {
-            File file = new File("files/users.txt");
+            File file = new File("files/users.txt"); //this is on macOS => windows
 
             try {
 
                 if (file.createNewFile()) {
                     System.out.println("File successfully created");
-
+                    PrintWriter pw = new PrintWriter(file);
+                    pw.print(name);
+                    pw.print("\t");
+                    pw.print(email);
+                    pw.print("\t");
+                    pw.print(phone);
+                    pw.print("\t");
+                    pw.print(password);
+                    pw.print("\t");
+                    pw.print(country);
+                    pw.print("\n");
+                    pw.close();
                 } else {
                     System.out.println("File already exits");
 
@@ -171,6 +183,7 @@ public final class SignUpForm extends Pane {
                     fileWriter.close();
                 }
 
+                //Note that we can use fileWriter anyway disregarding of if condition
                 Alert success = new Alert(Alert.AlertType.CONFIRMATION);
                 success.show();
 
